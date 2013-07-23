@@ -1,0 +1,21 @@
+{
+  "name": "raspberry",
+  "version": "0.0.0",
+  "description": "node baesd pie interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turingou/raspberry.git"
+  },
+  "keywords": [
+    "pie"
+  ],
+  "author": "turingou",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/turingou/raspberry/issues"
+  }
+}
