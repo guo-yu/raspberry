@@ -14,80 +14,14 @@
 // @npm: npm install respberry
 // @author: [turingou]
 
-var evilscan = require('evilscan'),
-    api = require('./lib/api'),
-    myIp = require('my-local-ip'),
-    cli = require('commander'),
-    async = require('async'),
+var cli = require('commander'),
     pkg = require('./pkg').fetch('/package.json'),
     config = require('./pkg').fetch('/config.json'),
-    alert = require('./lib/alert');
+    alert = require('./lib/alert'),
+    desktop = require('./ctrlers/desktop'),
+    pi = require('./ctrlers/pi');
 
-exports.desktop = {
-    scan: function(cb) {
-        var ip = myIp().toString().split('.'),
-            gateway = ip,
-            pies = [];
-
-        gateway[3] = '0';
-        gateway = gateway.join('.');
-
-        var scanner = new evilscan({
-            target: gateway + '/24',
-            port: '80',
-            banner: true
-        },function(s){
-
-            s.on('result',function(pi){
-               pies.push(pi)
-            }).on('error',function(err) {
-               console.log(alert.error);
-               console.log(err.toString());
-            }).on('done',function(){
-               cb(pies);
-            });
-
-            s.run();
-        });
-    },
-    connect: function(ip,pi,cb) {
-
-        var devices = [],
-            my;
-
-        if (typeof(ip) == 'string') {
-            devices.push(ip)
-        } else {
-            devices = ip;
-        }
-
-        var fetch = function(device,cb) {
-            var url = 'http://' + device.ip + ':' + pi.port + '/handshake';
-            api.post(url,{
-                token: pi.token
-            },function(err,result){
-                if (!err) {
-                    if (result.stat && result.stat == 'ok') {
-                        my = device;
-                        my['msg'] = result.msg;
-                    };
-                }
-                cb();
-            })
-        };
-
-        async.each(devices,fetch,function(err){
-            if (!err) {
-                cb(my);
-            }
-        })
-    }
-}
-
-exports.pi = {
-
-}
-
+// CLI
 exports.cli = function() {
     cli.version(pkg.version)
         .option('-c, connect','(on Mac/PC) scan and connect to Pi')
@@ -98,9 +32,9 @@ exports.cli = function() {
     var args = cli.args;
     if (cli.connect) {
         console.log(alert.doing + ' scaning ...');
-        exports.desktop.scan(function(devices){
+        desktop.scan(function(devices){
             console.log(devices);
-            exports.desktop.connect(devices,{
+            desktop.connect(devices,{
                 token: 'nodePi',
                 port: '9999'
             },function(myPi){
