@@ -2,7 +2,7 @@
 
 ![](https://badge.fury.io/js/respberry.png)
 
-Respberry Toolkit based on node, for nodejs apps, makes life easier.
+Respberry Toolkit & Webpanel based on node, for nodejs apps, makes life easier.
 
 - create web server on Pi: boardcast Pi's IP and provides some apis
 - provides web panel of Pi: run shell on web page
@@ -25,6 +25,7 @@ if your Pi runs on Debian, [check this official guide](https://github.com/joyent
 ### Install via Npm
 
 ````
+// make sure install both on your PC/Mac and Pi
 $ sudo npm install respberry -g
 ````
 
@@ -32,7 +33,25 @@ $ sudo npm install respberry -g
 
 Respberry Toolkit provides a CLI, which means you type some commands and everything will be setup and ready for connect
 
-### respberry panel
+### Desktop panel (on your Mac/PC)
+
+connect your Pi by running:
+````
+// start desktop server
+$ respberry server
+// or 
+$ respberry server -p 8888 // at selected port
+
+// when your Pi get ready (wifi connected), it will be POST a msg contains Pi desc/IP
+// like this
+$ [Pi] Hi, im here 192.168.1.100 // ssh your Pi use `ssh pi@192.168.1.100`
+
+// or
+$ [Pi] Hi, im here 192.168.1.100
+       Web panel: http://192.168.1.100:3000/
+````
+
+### Respberry panel (on your Pi)
 
 manage your Pi on web panel
 
@@ -68,6 +87,7 @@ $ respberry wifi setup // follow steps to setup wifi
 [setup wifi] passtype ? // input passtype
 [setup wifi] password ? // input password
 [setup wifi] autoconnect ? // true or false;
+[setup wifi] heartbeat server ? // type your DESKTOP SERVER ADD.( e.g: http://192.168.1.99:3000 ) or false;
 
 // results
 [setup wifi] wifi ssid:123 setup success [√]
