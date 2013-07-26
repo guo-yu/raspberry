@@ -21,5 +21,15 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/turingou/raspberry/issues"
+  },
+  "dependencies": {
+    "evilscan": "*",
+    "term-list": "*",
+    "commander": "*",
+    "my-local-ip":"*",
+    "underscore":"*",
+    "request": "*",
+    "colors": "*",
+    "async": "*"
   }
 }

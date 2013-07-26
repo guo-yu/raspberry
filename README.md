@@ -33,22 +33,24 @@ $ sudo npm install respberry -g
 
 Respberry Toolkit provides a CLI, which means you type some commands and everything will be setup and ready for connect
 
-### Desktop panel (on your Mac/PC)
+### Desktop Scanner (on your Mac/PC)
 
 connect your Pi by running:
 ````
-// start desktop server
-$ respberry server
-// or 
-$ respberry server -p 8888 // at selected port
+// start desktop connect 
+$ respberry connect
 
-// when your Pi get ready (wifi connected), it will be POST a msg contains Pi desc/IP
-// like this
-$ [Pi] Hi, im here 192.168.1.100 // ssh your Pi use `ssh pi@192.168.1.100`
+// advanced connect config
+// default : respberry connect nodePi 9999
+// e.g: respberry connect myPi 9998
+$ respberry connect [token] [port]
+
+// desktop connecter will scan your Pi (default by port 9999)
+// result like this:
+$ [Success] Hi, im here 192.168.1.100 // ssh your Pi use `ssh pi@192.168.1.100`
 
 // or
-$ [Pi] Hi, im here 192.168.1.100
-       Web panel: http://192.168.1.100:3000/
+$ [404] Respberry Pi Not Found ...
 ````
 
 ### Respberry panel (on your Pi)
@@ -58,7 +60,7 @@ manage your Pi on web panel
 #### start panel
 ````
 $ respberry panel // start your panel
-$ respberry panel -p 9999 // start your panel at selected port
+$ respberry panel 9999 // start your panel at selected port
 ````
 
 #### stop panel
@@ -87,7 +89,7 @@ $ respberry wifi setup // follow steps to setup wifi
 [setup wifi] passtype ? // input passtype
 [setup wifi] password ? // input password
 [setup wifi] autoconnect ? // true or false;
-[setup wifi] heartbeat server ? // type your DESKTOP SERVER ADD.( e.g: http://192.168.1.99:3000 ) or false;
+[setup wifi] heartbeat token ? // type your TOKEN or false;
 
 // results
 [setup wifi] wifi ssid:123 setup success [√]
