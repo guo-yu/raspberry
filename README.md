@@ -1,6 +1,8 @@
-# ![](http://ww1.sinaimg.cn/large/61ff0de3gw1e70bwd9d2ij208f01vt8r.jpg) Respberry Toolkit ![](https://badge.fury.io/js/respberry.png)
+# ![](http://ww1.sinaimg.cn/large/61ff0de3gw1e70bwd9d2ij208f01vt8r.jpg) Respberry Toolkit 
 
-Respberry Toolkit based on node, for nodejs apps, make life easier.
+![](https://badge.fury.io/js/respberry.png)
+
+Respberry Toolkit based on node, for nodejs apps, makes life easier.
 
 - create web server on Pi: boardcast Pi's IP and provides some apis
 - provides web panel of Pi: run shell on web page
