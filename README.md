@@ -1,6 +1,6 @@
 # ![](http://ww1.sinaimg.cn/large/61ff0de3gw1e70bwd9d2ij208f01vt8r.jpg) Respberry Toolkit 
 
-![](https://badge.fury.io/js/respberry.png)
+![](https://badge.fury.io/js/raspberry.png)
 
 Respberry Toolkit & Webpanel based on node, for nodejs apps, makes life easier.
 

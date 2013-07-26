@@ -1,6 +1,6 @@
 // desktop part
 
-var myIp = require('my-local-ip'),
+var localip = require('my-local-ip'),
     evilscan = require('evilscan'),
     async = require('async'),
     alert = require('../lib/alert'),
@@ -8,7 +8,7 @@ var myIp = require('my-local-ip'),
 
 module.exports = {
     scan: function(cb) {
-        var ip = myIp().toString().split('.'),
+        var ip = localip().toString().split('.'),
             gateway = ip,
             pies = [];
 
