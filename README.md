@@ -49,17 +49,33 @@ $ respberry panel stop // stop your panel
 
 ### respberry wifi
 
+#### scan wifi
+````
+$ respberry wifi scan // follow steps to setup wifi
+
+// result
+[scan wifi] ssid:123 ? // wifi details
+[scan wifi] ssid:223 ? // wifi details
+[scan wifi] ssid:my network ? // wifi details
+````
+
 #### setup wifi
 ````
 $ respberry wifi setup // follow steps to setup wifi
 
-// result
+// steps
 [setup wifi] ssid ? // input ssid
 [setup wifi] passtype ? // input passtype
 [setup wifi] password ? // input password
+[setup wifi] autoconnect ? // true or false;
+
+// results
+[setup wifi] wifi ssid:123 setup success [√]
+// or 
+[setup wifi] wifi ssid:123 setup fail [x]
 ````
 
-#### start wifi and setup auto connect
+#### start wifi
 ````
 $ respberry wifi // start wifi
 
@@ -67,6 +83,19 @@ $ respberry wifi // start wifi
 [start wifi] wifi(ssid) connected [√]
 // or 
 [start wifi] wifi(ssid) failed [x]
+````
+
+#### list wifi and edit
+````
+$ respberry wifi list // list wifi configs
+
+// result
+[list wifi] id:1 ssid:abc passtype:wap password:xxx
+
+$ respberry wifi edit 1 // edit (id:1)wifi configs
+
+// result
+[setup wifi] xxx // same as #start wifi
 ````
 
 #### stop wifi support

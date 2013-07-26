@@ -1,20 +1,24 @@
 {
   "name": "raspberry",
-  "version": "0.0.0",
-  "description": "node baesd pie interface",
+  "version": "0.0.1",
+  "description": "Respberry Toolkit based on node, for nodejs apps, makes life easier.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "respberry": "./bin/cli"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/turingou/raspberry.git"
   },
   "keywords": [
-    "pie"
+    "pie",
+    "raspberry"
   ],
   "author": "turingou",
-  "license": "BSD",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/turingou/raspberry/issues"
   }
