@@ -1,7 +1,6 @@
 // Respberry Pi part
 var server = require('../ctrlers/slave/server'),
-    wifi = require('../ctrlers/slave/wifi'),
-    usb = require('../ctrlers/sws')
+    wifi = require('../ctrlers/slave/wifi');
 
 module.exports = {
     panel: {

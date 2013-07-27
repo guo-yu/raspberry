@@ -91,7 +91,6 @@ $ respberry wifi setup // follow steps to setup wifi
 [setup wifi] passtype ? // input passtype
 [setup wifi] password ? // input password
 [setup wifi] autoconnect ? // true or false;
-[setup wifi] heartbeat token ? // type your TOKEN or false;
 
 // results
 [setup wifi] wifi ssid:123 setup success [√]

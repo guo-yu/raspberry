@@ -54,7 +54,9 @@ module.exports = {
                         my = device;
                         my['msg'] = result.msg;
                     };
-                }
+                } else {
+                    console.log(err);
+                };
                 cb();
             })
         };
