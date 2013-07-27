@@ -1,6 +1,6 @@
 # ![](http://ww1.sinaimg.cn/large/61ff0de3gw1e70bwd9d2ij208f01vt8r.jpg) Respberry Toolkit 
 
-![](https://badge.fury.io/js/raspberry.png)
+![](https://badge.fury.io/js/raspberry.png) [中文版说明](https://github.com/turingou/raspberry/blob/master/README_zh-cn.md)
 
 ![](http://ww2.sinaimg.cn/mw1024/61ff0de3gw1e71mlj082tj20m809vq4s.jpg)
 
