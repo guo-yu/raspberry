@@ -30,6 +30,7 @@
     "underscore":"*",
     "request": "*",
     "colors": "*",
-    "async": "*"
+    "async": "*",
+    "iwlist": "*"
   }
 }

@@ -13,7 +13,9 @@ module.exports = {
     },
     wifi: {
         scan: function(args) {
-            wifi.scan(args)
+            wifi.scan(args,function(list){
+                console.log(list);
+            });
         },
         stop: function(args) {
             wifi.stop()
