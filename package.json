@@ -23,6 +23,9 @@
     "url": "https://github.com/turingou/raspberry/issues"
   },
   "dependencies": {
+    "express": "3.3.1",
+    "jade": "*",
+    "less-middleware": "*",
     "evilscan": "*",
     "term-list": "*",
     "commander": "*",

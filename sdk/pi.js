@@ -1,10 +1,11 @@
 // Respberry Pi part
 var server = require('../ctrlers/slave/server'),
-    wifi = require('../ctrlers/slave/wifi');
+    wifi = require('../ctrlers/slave/wifi'),
+    usb = require('../ctrlers/sws')
 
 module.exports = {
     panel: {
-        server: function(args) {
+        start: function(args) {
             server.start(args)
         },
         stop: function(args) {
@@ -18,16 +19,22 @@ module.exports = {
             });
         },
         stop: function(args) {
-            wifi.stop()
+            var stopper = wifi.stop();
+            console.log(stopper)
         },
-        connect: function(args) {
-            wifi.connect(args)
+        connect: function(essid) {
+            wifi.connect(essid)
         },
         setup: function(args) {
             wifi.setup(args)
         },
         list: function(args) {
             wifi.list(args)
+        }
+    },
+    usb: {
+        list: function(args) {
+
         }
     }
 }

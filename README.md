@@ -2,6 +2,8 @@
 
 ![](https://badge.fury.io/js/raspberry.png)
 
+![](http://ww2.sinaimg.cn/mw1024/61ff0de3gw1e71mlj082tj20m809vq4s.jpg)
+
 Respberry Toolkit & Webpanel based on node, for nodejs apps, makes life easier.
 
 - create web server on Pi: boardcast Pi's IP and provides some apis

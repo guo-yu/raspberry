@@ -1,5 +1,7 @@
 // wifi settings on Pi
-var iwlist = require('iwlist');
+var iwlist = require('iwlist'),
+    color = require('colors'),
+    alert = require('../../lib/alert');
 
 // scan wifis nearby
 exports.scan = function(args,cb) {
