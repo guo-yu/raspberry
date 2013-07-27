@@ -1,15 +1,30 @@
 // create server on Pi
 var alert = require('../../lib/alert'),
-    server = require('../../server/index');
+    Server = require('../../server/index');
+
+exports.create = function(port) {
+    if (port) {
+        return new Server.create('slave',port);
+    } else {
+        return new Server.create('slave');
+    }
+}
 
 exports.start = function(args) {
-    if (args && args.length == 1) {
-        if (!isNaN(parseInt(args))) {
-            return server.create('slave',args[0]);
+    if (args && args.length == 2) {
+        var port = args[1];
+        if (!isNaN(parseInt(port))) {
+            var server = exports.create(parseInt(port));
+            server.start();
+            return server;
         } else {
-            alert.error('make sure you have input a Number')
+            console.log(alert.error + 'make sure you have input a Number')
         }
-    };
+    } else if (args.length == 1) {
+        var server = exports.create();
+        server.start();
+        return server;
+    }
 }
 
 exports.stop = function() {

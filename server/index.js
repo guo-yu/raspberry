@@ -4,12 +4,11 @@ var express = require('express')
   , fs = require('fs')
   , pkg = require('../pkg').fetch('/package.json');
 
-var createServer = function(role,inputPort) {
+var Server = function(role,inputPort) {
 
     this.role = role;
-    var self = this;
 
-    var port = inputPort ? inputPort : pkg.pi.port,
+    var port = inputPort ? inputPort : 9999,
         app = express();
 
     app.set('port', process.env.PORT || port);
@@ -27,7 +26,7 @@ var createServer = function(role,inputPort) {
       app.use(express.errorHandler());
     };
 
-    if (self.role == 'slave') {
+    if (this.role == 'slave') {
         // pages
         app.get('/',require('./routes/slave/index'));
 
@@ -36,17 +35,25 @@ var createServer = function(role,inputPort) {
         app.all('/wifi',require('./routes/slave/wifi'));
         app.post('/sys/:action',require('./routes/slave/sys'));
 
-    } else if (self.role == 'master') {
+        // auth handshake
+        app.post('/handshake',require('./routes/slave/handshake'));
+
+    } else if (this.role == 'master') {
         // panel
         app.get('/',require('./routes/master/index'));
     }
 
-    // start server on pi
+    this.app = app;
+
+};
+
+// start server on pi
+Server.prototype.start = function() {
+    var app = this.app;
     http.createServer(app).listen(app.get('port'), function(){
-      console.log(color.yellow('[' + pkg.name + ']' + ' is running on ......' + ' ==> http://localhost:' + app.get('port')));
-      self.app = app;
+      console.log('[' + pkg.name + ']' + ' is running on ......' + ' ==> http://localhost:' + app.get('port'));
     });
+};
 
-}
-
-exports.create = createServer;
+// expose all
+exports.create = Server;

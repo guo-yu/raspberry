@@ -7,7 +7,7 @@ var localip = require('my-local-ip'),
     api = require('../lib/api');
 
 module.exports = {
-    scan: function(cb) {
+    scan: function(port,cb) {
         var ip = localip().toString().split('.'),
             gateway = ip,
             pies = [];
@@ -17,7 +17,7 @@ module.exports = {
 
         var scanner = new evilscan({
             target: gateway + '/24',
-            port: '80',
+            port: port ? port : '80',
             banner: true
         },function(s){
 
@@ -36,34 +36,32 @@ module.exports = {
     connect: function(ip,pi,cb) {
 
         var devices = [],
-            my;
+            mime = [];
 
         if (typeof(ip) == 'string') {
             devices.push(ip)
         } else {
             devices = ip;
         }
-
+        
         var fetch = function(device,cb) {
-            var url = 'http://' + device.ip + ':' + pi.port + '/handshake';
+            var url = 'http://' + device.ip + ':' + device.port + '/handshake';
             api.post(url,{
                 token: pi.token
             },function(err,result){
                 if (!err) {
-                    if (result.stat && result.stat == 'ok') {
-                        my = device;
-                        my['msg'] = result.msg;
-                    };
-                } else {
-                    console.log(err);
-                };
+                    if (result.stat && result.stat == 'success') {
+                        device['handshake'] = result
+                        mime.push(device);
+                    }
+                }
                 cb();
             })
         };
 
         async.each(devices,fetch,function(err){
             if (!err) {
-                cb(my);
+                cb(mime);
             }
         })
     }

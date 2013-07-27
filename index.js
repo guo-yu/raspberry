@@ -19,7 +19,8 @@ var cli = require('commander'),
     config = require('./pkg').fetch('/config.json'),
     alert = require('./lib/alert'),
     desktop = require('./sdk/desktop'),
-    pi = require('./sdk/pi');
+    pi = require('./sdk/pi'),
+    _ = require('underscore');
 
 // CLI
 exports.cli = function() {
@@ -31,22 +32,26 @@ exports.cli = function() {
 
     var args = cli.args;
     if (cli.connect) {
-        console.log(alert.doing + ' scaning ...');
-        desktop.scan(function(devices){
-            console.log(devices);
+        console.log(alert.doing + 'Scaning ...');
+        desktop.scan('9999',function(devices){
             desktop.connect(devices,{
-                token: 'nodePi',
-                port: '9999'
-            },function(myPi){
-                if (myPi) {
-                    console.log(alert.success + 'Hi, im here ' + myPi.ip)
+                token: 'nodePi'
+            },function(mime){
+                if (mime && mime.length > 0) {
+                    _.each(mime,function(item){
+                        console.log(alert.success + 'Hi, im here ' + item.handshake.ip + ' @' + item.handshake.date);
+                    });
                 } else {
                     console.log(alert.notFound + 'Respberry Pi Not Found ...')
                 }
-            })
+            });
         });
     } else if (cli.panel) {
-        pi.panel[args[0]](args);
+        if (args.length && args.length > 0) {
+            pi.panel[args[0]](args);
+        } else {
+            console.log(alert.error + 'respberry panel [start] or [stop] ?')
+        }
     } else if (cli.wifi) {
         pi.wifi[args[0]](args);
     } else {

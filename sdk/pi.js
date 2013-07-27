@@ -5,7 +5,7 @@ var server = require('../ctrlers/slave/server'),
 module.exports = {
     panel: {
         start: function(args) {
-            server.start(args)
+            return server.start(args)
         },
         stop: function(args) {
             server.stop();
