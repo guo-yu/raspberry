@@ -18,8 +18,8 @@ var cli = require('commander'),
     pkg = require('./pkg').fetch('/package.json'),
     config = require('./pkg').fetch('/config.json'),
     alert = require('./lib/alert'),
-    desktop = require('./ctrlers/desktop'),
-    pi = require('./ctrlers/pi');
+    desktop = require('./sdk/desktop'),
+    pi = require('./sdk/pi');
 
 // CLI
 exports.cli = function() {
@@ -45,7 +45,11 @@ exports.cli = function() {
                 }
             })
         });
+    } else if (cli.panel) {
+        pi.panel[args[0]](args);
+    } else if (cli.wifi) {
+        pi.wifi[args[0]](args);
     } else {
-        console.log('[>.<] Haha, Bite a little and enjoy! ');
+        console.log('[>.<] Haha, Bite a little and enjoy! ');        
     }
 }
