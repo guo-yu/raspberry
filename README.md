@@ -28,7 +28,7 @@ if your Pi runs on Debian, [check this official guide](https://github.com/joyent
 
 ````
 // make sure install both on your PC/Mac and Pi
-$ sudo npm install respberry -g
+$ sudo npm install raspberry -g
 ````
 
 ## Bite a little
